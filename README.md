@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Nov 20 21:37:10 2023
-
-@author: Jide Awoniyi
-"""
 
 # Intrusion Detection System (IDS)
 
@@ -26,9 +19,9 @@ This Intrusion Detection System is a desktop application developed in Python wit
 
 ## Usage
 Run the application:
-```bash
+```python
 python app.py
-
+```
 ## How It Works
 Load Alerts: Displays alerts from the alerts.json file and groups them by severity.
 Alert Details: Clicking on a severity level displays detailed information for the alerts of that category.
