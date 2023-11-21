@@ -1,3 +1,43 @@
+"""
+Intrusion Detection System (IDS) Application
+
+This application is a desktop GUI developed in Python using the Tkinter library. It monitors and displays network security alerts, categorizing them by severity levels. The UI is styled to resemble a modern MacBook application, with severity level indicators and interactive functionalities.
+
+Global Variables:
+    SEVERITY_COLORS (dict): Mapping of severity levels to their corresponding color codes.
+    BACKGROUND_COLOR (str): Background color used throughout the application.
+    TEXT_COLOR (str): Default text color used in the application.
+    FONT_NAME (str): Font name used for text in the application.
+    BUTTON_BG (str): Background color for buttons.
+    BUTTON_FG (str): Text color for buttons.
+    BUTTON_FONT (tuple): Font styling for buttons.
+    BUTTON_BORDER (int): Border width for buttons.
+    BUTTON_PADX (int): Horizontal padding inside buttons.
+    BUTTON_PADY (int): Vertical padding inside buttons.
+    ALERT_FILE (str): Path to the JSON file that stores alert data.
+    SUSPICIOUS_IPS (list): List of IP addresses considered suspicious.
+    LOG_FILE (str): Path to the log file containing network activity records.
+
+Classes:
+    IDSApp: Main application class.
+        Methods:
+            __init__(self, root): Constructor to initialize the Tkinter application.
+            setup_menu(self): Sets up the top menu bar.
+            setup_status_bar(self): Creates a status bar for displaying messages.
+            setup_layout(self): Configures the layout of the main application window.
+            style_treeview(self): Applies custom styles to the Treeview widget.
+            show_about(self): Displays an 'About' dialog.
+            load_alerts(self): Loads and displays alerts from ALERT_FILE.
+            add_ip(self): Adds a new suspicious IP address to SUSPICIOUS_IPS.
+            validate_ip(self, ip): Validates the format of an IP address.
+            run_ids(self): Executes the intrusion detection process.
+            is_suspicious(self, line): Checks if a log entry is suspicious.
+            log_alert(self, log_entry): Logs an alert to ALERT_FILE.
+            determine_severity(self, log_entry): Determines the severity level of an alert.
+            on_item_click(self, event): Handles click events on the Treeview.
+            display_alert_details(self, severity): Displays details of alerts for a specific severity.
+"""
+
 import tkinter as tk
 from tkinter import messagebox, simpledialog, scrolledtext, ttk
 from tkinter import Toplevel
@@ -6,7 +46,7 @@ import os
 import re
 from datetime import datetime
 
-# Define colors and fonts
+# Global variable definitions
 SEVERITY_COLORS = {
     'High': '#FF6347',  # Tomato red
     'Medium': '#FFD700',  # Gold
@@ -15,16 +55,12 @@ SEVERITY_COLORS = {
 BACKGROUND_COLOR = '#FFFFFF'
 TEXT_COLOR = '#333333'
 FONT_NAME = 'Helvetica'
-
-# Button style parameters
 BUTTON_BG = '#0078D7'  # Blue background for buttons
 BUTTON_FG = '#FFFFFF'  # White text for buttons
 BUTTON_FONT = (FONT_NAME, 10, 'bold')
 BUTTON_BORDER = 0
 BUTTON_PADX = 10
 BUTTON_PADY = 5
-
-# Constants
 ALERT_FILE = 'alerts.json'
 SUSPICIOUS_IPS = ['192.168.1.5', '10.0.0.2']
 LOG_FILE = 'network.log'
